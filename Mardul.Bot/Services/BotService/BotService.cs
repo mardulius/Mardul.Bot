@@ -2,11 +2,15 @@
 
 namespace Mardul.Bot.Services.BotService
 {
-    public static class BotService
+    public class BotService
     {
         private static TelegramBotClient botClient { get; set; }
+        private readonly IConfiguration _configuration;
 
+        public BotService()
+        {
 
+        }
         public static async Task<TelegramBotClient> GetBotAsync()
         {
             if (botClient != null)

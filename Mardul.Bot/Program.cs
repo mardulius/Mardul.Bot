@@ -8,7 +8,7 @@ builder.Services.AddControllers()
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-BotService.GetBotAsync().Wait();
+builder.Services.AddSingleton<BotService>();
 var app = builder.Build();
 
 
@@ -19,7 +19,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.MapGet("/", () => "Hello World!");
+
 app.UseAuthorization();
 app.MapControllers();
-
+app.Services.GetService<BotService>().GetBotAsync().Wait();
 app.Run();
