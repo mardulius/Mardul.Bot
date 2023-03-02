@@ -25,6 +25,9 @@ namespace Mardul.Bot.Services.CommandService
                     case "/start":
                         await ExecuteCommandAsync(CommandNames.Start, update);
                         return;
+                    case "/registration":
+                        await ExecuteCommandAsync(CommandNames.Registration, update);
+                        return;
                 }
             }
         }
