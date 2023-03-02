@@ -2,7 +2,8 @@ using Data;
 using Mardul.Bot.Commands;
 using Mardul.Bot.Services.BotService;
 using Mardul.Bot.Services.CommandService;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ builder.Services.AddControllers()
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<BotContext>(options => 
+options.UseSqlite(builder.Configuration.GetConnectionString("BotDatabase")));
 builder.Services.AddSingleton<BotService>();
 builder.Services.AddSingleton<ICommandService, CommandService>();
 builder.Services.AddSingleton<IBaseCommand, StartCommand>();

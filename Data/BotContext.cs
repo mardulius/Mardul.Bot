@@ -13,16 +13,9 @@ namespace Data
     {
         public DbSet<User> Users { get; set; }
 
-        private readonly IConfiguration _configuration;
+        public BotContext(DbContextOptions<BotContext> options) : base(options)
+        {
 
-        public BotContext(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            // connect to sqlite database
-            options.UseSqlite(_configuration.GetConnectionString("BotDatabase"));
         }
     }
 }
