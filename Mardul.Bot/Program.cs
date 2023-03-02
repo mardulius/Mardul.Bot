@@ -1,4 +1,7 @@
+using Mardul.Bot.Commands;
 using Mardul.Bot.Services.BotService;
+using Mardul.Bot.Services.CommandService;
+using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +12,8 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<BotService>();
+builder.Services.AddSingleton<ICommandService, CommandService>();
+builder.Services.AddSingleton<IBaseCommand, StartCommand>();
 var app = builder.Build();
 
 

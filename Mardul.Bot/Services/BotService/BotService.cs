@@ -5,7 +5,7 @@ namespace Mardul.Bot.Services.BotService
     public class BotService
     {
         private readonly IConfiguration _configuration;
-        private TelegramBotClient botClient { get; set; }
+        private TelegramBotClient _botClient { get; set; }
 
         public BotService(IConfiguration configuration)
         {
@@ -14,15 +14,15 @@ namespace Mardul.Bot.Services.BotService
 
         public async Task<TelegramBotClient> GetBotAsync()
         {
-            if (botClient != null)
+            if (_botClient != null)
             {
-                return botClient;
+                return _botClient;
             }
 
-            botClient = new TelegramBotClient(_configuration["Token"]);
-            await botClient.SetWebhookAsync(_configuration["Url"]);
+            _botClient = new TelegramBotClient(_configuration["Token"]);
+            await _botClient.SetWebhookAsync(_configuration["Url"]);
 
-            return botClient;
+            return _botClient;
 
         }
     }
