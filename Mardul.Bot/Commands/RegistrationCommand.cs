@@ -1,5 +1,7 @@
 ﻿using Data;
+using Data.Dto;
 using Data.Models;
+using Data.Repositories;
 using Mardul.Bot.Services.BotService;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -9,23 +11,29 @@ namespace Mardul.Bot.Commands
     public class RegistrationCommand : IBaseCommand
     {
         private readonly TelegramBotClient _botClient;
-        private readonly BotContext _botContext;
+        private readonly IUserRepository _userRepository;
         public CommandNames Name => CommandNames.Registration;
-        public RegistrationCommand(BotService botService, BotContext botContext)
+        public RegistrationCommand(BotService botService, IUserRepository userRepository)
         {
             _botClient = botService.GetBotAsync().Result;
-            _botContext = botContext;
+            _userRepository = userRepository;
         }
         public async Task ExecuteAsync(Update update)
         {
-            await _botContext.Users.AddAsync(new Data.Models.User
+            var result = await _userRepository.AddUserAsync(new UserDto
             {
                 TelegramUserId = update.Message.From.Id,
                 ChatId = update.Message.Chat.Id,
                 Name = update.Message.From.Username
             });
-            await _botContext.SaveChangesAsync();
-            await _botClient.SendTextMessageAsync(update.Message.Chat.Id, $"{update.Message?.From?.Username} - успешно зарегистрирован!");
+            if (result)
+            {
+                await _botClient.SendTextMessageAsync(update.Message.Chat.Id, $"{update.Message?.From?.Username} - успешно зарегистрирован!");
+            }
+            else
+            {
+                await _botClient.SendTextMessageAsync(update.Message.Chat.Id, $"{update.Message?.From?.Username} - уже зарегистрирован!");
+            }
         }
     }
 }
