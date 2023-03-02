@@ -4,22 +4,23 @@ namespace Mardul.Bot.Services.BotService
 {
     public class BotService
     {
-        private static TelegramBotClient botClient { get; set; }
         private readonly IConfiguration _configuration;
+        private TelegramBotClient botClient { get; set; }
 
-        public BotService()
+        public BotService(IConfiguration configuration)
         {
-
+            _configuration = configuration;
         }
-        public static async Task<TelegramBotClient> GetBotAsync()
+
+        public async Task<TelegramBotClient> GetBotAsync()
         {
             if (botClient != null)
             {
                 return botClient;
             }
 
-            botClient = new TelegramBotClient(BotSettings.APIKEY);
-            await botClient.SetWebhookAsync(BotSettings.APIURL);
+            botClient = new TelegramBotClient(_configuration["Token"]);
+            await botClient.SetWebhookAsync(_configuration["Url"]);
 
             return botClient;
 
