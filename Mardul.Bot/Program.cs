@@ -17,9 +17,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<BotContext>(options => 
 options.UseSqlite(builder.Configuration.GetConnectionString("BotDatabase")));
 builder.Services.AddSingleton<BotService>();
-builder.Services.AddSingleton<ICommandService, CommandService>();
-builder.Services.AddSingleton<IBaseCommand, StartCommand>();
-builder.Services.AddSingleton<IBaseCommand, RegistrationCommand>();
+builder.Services.AddTransient<ICommandService, CommandService>();
+builder.Services.AddTransient<IBaseCommand, StartCommand>();
+builder.Services.AddTransient<IBaseCommand, RegistrationCommand>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 var app = builder.Build();
 
