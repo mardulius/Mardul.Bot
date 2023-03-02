@@ -15,7 +15,7 @@ namespace Data
 
         public BotContext(DbContextOptions<BotContext> options) : base(options)
         {
-
+            Database.Migrate();
         }
     }
 }
