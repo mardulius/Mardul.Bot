@@ -10,21 +10,11 @@ namespace Mardul.Bot.Controllers.Bot
     [ApiController]
     public class BotController : ControllerBase
     {
-        //private readonly TelegramBotClient _botClient;
         private readonly ICommandService _commandService;
         public BotController(ICommandService commandService)
         {
            _commandService = commandService;
         }
-        //[Route("1ZwWxG8wNBvLvUlncprlZG3l9q1RdseE")]
-        //[HttpPost]
-        //public async Task<IActionResult> UpdateMessage([FromBody] Update update)
-        //{
-        //    if (update == null) return Ok("нет сообщений");
-        //    await _botClient.SendTextMessageAsync(update.Message.Chat.Id, $"простите, не понимаю :(");
-
-        //    return Ok();
-        //}
 
         [Route("1ZwWxG8wNBvLvUlncprlZG3l9q1RdseE")]
         [HttpPost]
