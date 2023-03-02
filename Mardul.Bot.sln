@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mardul.Bot", "Mardul.Bot\Mardul.Bot.csproj", "{972C414D-A442-4B84-9738-CB6918F1FED3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mardul.Bot", "Mardul.Bot\Mardul.Bot.csproj", "{972C414D-A442-4B84-9738-CB6918F1FED3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FD416C6E-F93F-4420-B03E-EB26C4B9D5E5} = {FD416C6E-F93F-4420-B03E-EB26C4B9D5E5}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{FD416C6E-F93F-4420-B03E-EB26C4B9D5E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{972C414D-A442-4B84-9738-CB6918F1FED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{972C414D-A442-4B84-9738-CB6918F1FED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{972C414D-A442-4B84-9738-CB6918F1FED3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD416C6E-F93F-4420-B03E-EB26C4B9D5E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD416C6E-F93F-4420-B03E-EB26C4B9D5E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD416C6E-F93F-4420-B03E-EB26C4B9D5E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD416C6E-F93F-4420-B03E-EB26C4B9D5E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

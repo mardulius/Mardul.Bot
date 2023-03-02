@@ -1,7 +1,8 @@
+using Data;
 using Mardul.Bot.Commands;
 using Mardul.Bot.Services.BotService;
 using Mardul.Bot.Services.CommandService;
-using System.Data;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

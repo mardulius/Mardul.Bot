@@ -1,0 +1,28 @@
+﻿using Data.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Data
+{
+    public class BotContext : DbContext
+    {
+        public DbSet<User> Users { get; set; }
+
+        private readonly IConfiguration _configuration;
+
+        public BotContext(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            // connect to sqlite database
+            options.UseSqlite(_configuration.GetConnectionString("BotDatabase"));
+        }
+    }
+}
