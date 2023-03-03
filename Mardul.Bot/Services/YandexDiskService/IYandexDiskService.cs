@@ -2,7 +2,8 @@
 {
     public interface IYandexDiskService
     {
-        Task<bool> AuthorizeAsync();
+        Task<bool> CreateFolderAsync();
+
       
     }
 }

@@ -5,7 +5,6 @@ namespace Mardul.Bot.Commands
     public interface IBaseCommand
     {
         CommandNames Name { get; }
-
         Task ExecuteAsync(Update update);
 
     }
@@ -13,7 +12,8 @@ namespace Mardul.Bot.Commands
     public enum CommandNames
     {
         Start = 1,
-        Registration
+        Registration,
+        AuthYandex
     }
 
 }
