@@ -8,13 +8,16 @@ namespace Mardul.Bot.Commands
     {
         public CommandNames Name => CommandNames.AuthYandex;
         private readonly TelegramBotClient _botClient;
-        public AuthYandexCommand(BotService botService)
+        private readonly IConfiguration _configuration;
+        public AuthYandexCommand(BotService botService, IConfiguration configuration)
         {
             _botClient = botService.GetBotAsync().Result;
+            _configuration = configuration;
         }
         public async Task ExecuteAsync(Update update)
         {
-            await _botClient.SendTextMessageAsync(update.Message.Chat.Id, $"https://oauth.yandex.ru/authorize?response_type=code&client_id=e0f4b3d6522049e48640be058b31afac");
+            await _botClient.SendTextMessageAsync(update.Message.Chat.Id, $"{_configuration["RequestCodeUrl"]}{update.Message.Chat.Id}");
         }
+
     }
 }

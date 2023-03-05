@@ -28,11 +28,15 @@ namespace Mardul.Bot.Services.CommandService
                     case "/registration":
                         await ExecuteCommandAsync(CommandNames.Registration, update);
                         return;
+
                     case "/auth_yandex":
                         await ExecuteCommandAsync(CommandNames.AuthYandex, update);
                         return;
                 }
+
             }
+
+           
         }
         private async Task ExecuteCommandAsync(CommandNames name, Update update)
         {

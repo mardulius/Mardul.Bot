@@ -1,5 +1,6 @@
 ﻿using Data;
 using Data.Dto;
+using Data.Dto.User;
 using Data.Models;
 using Data.Repositories;
 using Mardul.Bot.Services.BotService;
@@ -22,8 +23,7 @@ namespace Mardul.Bot.Commands
         {
             var result = await _userRepository.AddUserAsync(new UserDto
             {
-                TelegramUserId = update.Message.From.Id,
-                ChatId = update.Message.Chat.Id,
+                Id = update.Message.Chat.Id,
                 Name = update.Message.From.Username
             });
             if (result)

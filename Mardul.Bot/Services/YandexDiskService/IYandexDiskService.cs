@@ -2,7 +2,7 @@
 {
     public interface IYandexDiskService
     {
-        Task<bool> CreateFolderAsync();
+        Task<bool> SaveDocumentAsync();
 
       
     }

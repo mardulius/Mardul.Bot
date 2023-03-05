@@ -12,6 +12,7 @@ namespace Data
     public class BotContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<YandexToken> YandexTokens { get; set; }
 
         public BotContext(DbContextOptions<BotContext> options) : base(options)
         {
