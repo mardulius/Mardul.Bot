@@ -34,6 +34,11 @@ namespace Mardul.Bot.Services.CommandService
                         return;
                 }
 
+                 if(update.Message.Document != null)
+                {
+                    await ExecuteCommandAsync(CommandNames.UploadFile, update);
+                }
+
             }
 
            
