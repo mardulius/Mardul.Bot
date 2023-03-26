@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /Mardul.Bot/config.json
+/Mardul.Bot/LocalDatabase.db
