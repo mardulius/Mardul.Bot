@@ -13,8 +13,13 @@ namespace Mardul.Bot.Commands
     {
         Start = 1,
         Registration,
+<<<<<<< HEAD
         YandexAuth,
         YandexDisk
+=======
+        AuthYandex,
+        UploadFile
+>>>>>>> 8052811ceaa234c42f0062de305fcb1e01cdd12f
     }
 
 }

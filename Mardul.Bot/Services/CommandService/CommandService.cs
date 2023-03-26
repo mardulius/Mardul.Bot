@@ -39,6 +39,15 @@ namespace Mardul.Bot.Services.CommandService
                         await ExecuteCommandAsync(CommandNames.YandexDisk, update);
                         break;
                 }
+<<<<<<< HEAD
+=======
+
+                 if(update.Message.Document != null)
+                {
+                    await ExecuteCommandAsync(CommandNames.UploadFile, update);
+                }
+
+>>>>>>> 8052811ceaa234c42f0062de305fcb1e01cdd12f
             }
            
 
