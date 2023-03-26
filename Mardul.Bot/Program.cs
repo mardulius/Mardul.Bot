@@ -5,6 +5,7 @@ using Mardul.Bot.Services.BotService;
 using Mardul.Bot.Services.CommandService;
 using Mardul.Bot.Services.UserService;
 using Mardul.Bot.Services.YandexAuthService;
+using Mardul.Bot.Services.YandexDiskService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -23,10 +24,12 @@ builder.Services.AddSingleton<BotService>();
 builder.Services.AddTransient<ICommandService, CommandService>();
 builder.Services.AddTransient<IBaseCommand, StartCommand>();
 builder.Services.AddTransient<IBaseCommand, RegistrationCommand>();
-builder.Services.AddTransient<IBaseCommand, AuthYandexCommand>();
+builder.Services.AddTransient<IBaseCommand, YandexAuthCommand>();
+builder.Services.AddTransient<IBaseCommand, YandexDiskCommand>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IYandexAuthService, YandexAuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IYandexDiskService,YandexDiskService>();
 var app = builder.Build();
 
 

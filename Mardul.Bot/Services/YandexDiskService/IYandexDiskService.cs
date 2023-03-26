@@ -2,7 +2,7 @@
 {
     public interface IYandexDiskService
     {
-        Task<bool> SaveDocumentAsync();
+        Task<bool> SaveDocumentAsync(string yandexToken, string fileName, string filePath);
 
       
     }

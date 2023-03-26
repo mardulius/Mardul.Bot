@@ -4,12 +4,12 @@ using Telegram.Bot.Types;
 
 namespace Mardul.Bot.Commands
 {
-    public class AuthYandexCommand : IBaseCommand
+    public class YandexAuthCommand : IBaseCommand
     {
-        public CommandNames Name => CommandNames.AuthYandex;
+        public CommandNames Name => CommandNames.YandexAuth;
         private readonly TelegramBotClient _botClient;
         private readonly IConfiguration _configuration;
-        public AuthYandexCommand(BotService botService, IConfiguration configuration)
+        public YandexAuthCommand(BotService botService, IConfiguration configuration)
         {
             _botClient = botService.GetBotAsync().Result;
             _configuration = configuration;

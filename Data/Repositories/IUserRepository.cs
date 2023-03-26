@@ -11,6 +11,7 @@ namespace Data.Repositories
     {
         Task<bool> AddUserAsync(UserDto data);
         Task<UserDto> GetUserFromChatIdAsync(long userId);
+        Task<string> GetUserYandexTokenAsync(long id);
         Task SetYandexTokenAsync(UserDto data);
     }
 }

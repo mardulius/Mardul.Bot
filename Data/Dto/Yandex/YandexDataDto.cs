@@ -1,6 +1,6 @@
-﻿namespace Mardul.Bot.Services.YandexAuthService
+﻿namespace Data.Dto.Yandex
 {
-    public class YandexData
+    public class YandexDataDto
     {
         public string CallBackUrl { get; set; }
         public string AccessTokenUrl { get; set; }

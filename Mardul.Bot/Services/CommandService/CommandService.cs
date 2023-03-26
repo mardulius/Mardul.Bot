@@ -24,17 +24,24 @@ namespace Mardul.Bot.Services.CommandService
                 {
                     case "/start":
                         await ExecuteCommandAsync(CommandNames.Start, update);
-                        return;
+                        break;
                     case "/registration":
                         await ExecuteCommandAsync(CommandNames.Registration, update);
-                        return;
+                        break;
 
                     case "/auth_yandex":
-                        await ExecuteCommandAsync(CommandNames.AuthYandex, update);
-                        return;
+                        await ExecuteCommandAsync(CommandNames.YandexAuth, update);
+                        break;
                 }
-
+                switch (update.Message?.Document?.MimeType)
+                {
+                    case "application/pdf":
+                        await ExecuteCommandAsync(CommandNames.YandexDisk, update);
+                        break;
+                }
             }
+           
+
 
            
         }

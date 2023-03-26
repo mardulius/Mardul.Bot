@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Data.Dto.Yandex;
+using Newtonsoft.Json;
 using System.Net;
 
 namespace Mardul.Bot.Services.YandexAuthService
@@ -7,28 +8,28 @@ namespace Mardul.Bot.Services.YandexAuthService
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        private readonly YandexData _data;
+        private readonly YandexDataDto config;
 
         public YandexAuthService(IHttpClientFactory httpClientFactory)
         {
-            StreamReader r = new StreamReader("config.json");
-            string jsonString = r.ReadToEnd();
-            _data = JsonConvert.DeserializeObject<YandexData>(jsonString);
+            StreamReader data = new StreamReader("config.json");
+            string jsonString = data.ReadToEnd();
+            config = JsonConvert.DeserializeObject<YandexDataDto>(jsonString);
             _httpClientFactory = httpClientFactory;
         }
 
         public async Task<string> GetTokenFromAuthorizationCodeAsync(string authCode)
         {
             HttpClient client = _httpClientFactory.CreateClient();
-            string requestUrl = _data.AccessTokenUrl;
+            string requestUrl = config.AccessTokenUrl;
 
             List<KeyValuePair<string, string>> content = new List<KeyValuePair<string, string>>()
             {
-                new KeyValuePair<string, string>("client_id", _data.ClientId),
-                new KeyValuePair<string, string>("grant_type", _data.GrandType),
+                new KeyValuePair<string, string>("client_id", config.ClientId),
+                new KeyValuePair<string, string>("grant_type", config.GrandType),
                 new KeyValuePair<string, string>("code", authCode),
-                new KeyValuePair<string, string>("redirect_uri", _data.CallBackUrl),
-                new KeyValuePair<string, string>("client_secret", _data.ClientSecret)
+                new KeyValuePair<string, string>("redirect_uri", config.CallBackUrl),
+                new KeyValuePair<string, string>("client_secret", config.ClientSecret)
              };
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, requestUrl)
@@ -40,21 +41,20 @@ namespace Mardul.Bot.Services.YandexAuthService
 
             string responseContent = await response.Content.ReadAsStringAsync();
 
-            dynamic responseObject = JsonConvert.DeserializeObject(responseContent);
+            YandexAuthResponseDto? responseObject = JsonConvert.DeserializeObject<YandexAuthResponseDto>(responseContent);
 
             if (response.IsSuccessStatusCode)
             {
-                return (string)responseObject.access_token;
+                return (string)responseObject.AccessToken;
             }
             else if (response.StatusCode == HttpStatusCode.BadRequest)
             {
                 
-                throw new Exception((string)responseObject.error_description);
+                throw new Exception("ошибка 400");
             }
             else
             {
-                // ¯\_(ツ)_/¯
-                throw new Exception("Something bad happened");
+                throw new Exception("что-то пошло не так!");
             }
         }
     }

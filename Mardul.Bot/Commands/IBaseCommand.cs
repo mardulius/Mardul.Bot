@@ -13,7 +13,8 @@ namespace Mardul.Bot.Commands
     {
         Start = 1,
         Registration,
-        AuthYandex
+        YandexAuth,
+        YandexDisk
     }
 
 }

@@ -1,11 +1,6 @@
 ﻿using Data.Dto.User;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Data.Repositories
@@ -49,6 +44,16 @@ namespace Data.Repositories
 
             return result;
 
+        }
+
+        public async Task<string> GetUserYandexTokenAsync(long id)
+        {
+           var token = await _botContext.YandexTokens.Where(x => x.UserId == id).FirstOrDefaultAsync();
+            if(token != null)
+            {
+                return token.Token;
+            }
+            return null;
         }
 
         public async Task SetYandexTokenAsync(UserDto data)
