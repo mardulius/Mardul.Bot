@@ -39,7 +39,6 @@ namespace Mardul.Bot.Services.CommandService
                         await ExecuteCommandAsync(CommandNames.YandexDisk, update);
                         break;
                 }
-
             }
            
 
