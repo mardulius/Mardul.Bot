@@ -11,16 +11,18 @@ namespace Mardul.Bot.Services.YandexDiskService
     {
 
         private readonly IHttpClientFactory _httpClientFactory;
-        public YandexDiskService(IHttpClientFactory httpClientFactory)
+        private readonly IConfiguration _configuration;
+        public YandexDiskService(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
         }
 
         public async Task<bool> SaveDocumentAsync(string yandexToken, string fileName, string filePath)
         {
             HttpClient client = _httpClientFactory.CreateClient();
             string uploadFilePath = $"disk:/Книги/{fileName}";
-            string downloadTelegramUrl = $"https://api.telegram.org/file/bot1263428243:AAHDh7kCBRkyDKD11U6rTVIM6Zh7WDPrFu4/{filePath}";
+            string downloadTelegramUrl = $"https://api.telegram.org/file/{_configuration["Token"]}/{filePath}";
 
             string uploadUrl = $"https://cloud-api.yandex.net/v1/disk/resources/upload?path={uploadFilePath}&url={downloadTelegramUrl}";
 
